@@ -1,266 +1,121 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>EmulatorJS</title>
-        <link rel = icon href = docs/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
-        <meta name = viewport content = "width = device-width, initial-scale = 1">
-        <style>
-             body, html {
-                height: 100%;
-                background-color: black;
-                color: white;
-            }
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinnamoroll - La gran aventura de los sueños</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-            body {
-                margin: 0;
-                overflow: hidden;
-            }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #cfe2ff;
+    }
 
-            body, #box, #top {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
+    body {
+      position: relative;
+      background-image: url("fondo-portada.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-            #box {
-                color: #aaa;
-                height: 20em;
-                width: 30em;
-                max-width: 80%;
-                max-height: 80%;
-                background-color: #333;
-                border-radius: 0.4em;
-                border: 2px solid #555;
-                position: relative;
-                flex-direction: column;
-                transition-duration: 0.2s;
-                overflow: hidden;
-                font-family: monospace;
-                font-weight: bold;
-                font-size: 20px;
-                margin: 5px;
-                text-align: center;
-                padding: 10px;
-            }
+    .botones {
+      position: absolute;
+      left: 30%;
+      top: 65%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      z-index: 10;
+    }
 
-            #box:hover, #box[drag] {
-                border-color: #38f;
-                color: #ddd
-            }
+    .boton {
+      width: 290px;
+      height: 86px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #a9c7ff;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
 
-            #input {
-                cursor: pointer;
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-            }
+    .boton:hover {
+      transform: scale(1.04);
+      opacity: 0.96;
+    }
 
-            #display {
-                width: 100%;
-                height: 100%
-            }
+    .boton.secundario {
+      height: 74px;
+      font-size: 24px;
+    }
 
-            select, button {
-                padding: 0.6em 0.4em;
-                margin: 0.5em;
-                width: 15em;
-                max-width: 100%;
-                font-family: monospace;
-                font-weight: bold;
-                font-size: 16px;
-                background-color: #444;
-                color: #aaa;
-                border-radius: 0.4em;
-                border: 1px solid #555;
-                cursor: pointer;
-                transition-duration: 0.2s
-            }
+    @media (max-width: 900px) {
+      .botones {
+        left: 6%;
+        top: 56%;
+        gap: 18px;
+      }
 
-            select:hover, button:hover {
-                background-color: #666;
-                color: #ddd
-            }
+      .boton {
+        width: 220px;
+        height: 68px;
+        font-size: 28px;
+      }
 
-            .logo {
-                width: 130px;
-                height: 130px;
-                filter: drop-shadow(0 0 10px white);
-            }
+      .boton.secundario {
+        height: 60px;
+        font-size: 19px;
+      }
+    }
 
-            #top {
-                margin: 5px;
-            }
-        </style>
-    </head>
+    @media (max-width: 600px) {
 
-    <body>
-        <div id="top">
-            <h1>EmulatorJS Demo</h1>
-            <img src="docs/Logo-light.png" alt="Logo" class="logo">
-            <br>
-        </div>
-        <div id="box">
-            <input type = file id = input>
-            Drag ROM file or click here
-        </div>
+body{
+    background-image:url("fondo-portada-movil.png");
+    background-size:cover;
+    background-position:center;
+}
+      .botones {
+        left: 50%;
+        top: auto;
+        bottom: 24%;
+        transform: translateX(-50%);
+        gap: 14px;
+      }
 
-        <script>
-            let enableDebug = false;
-            let enableThreads = false;
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            if (parseInt(urlParams.get('debug')) === 1 || urlParams.get('debug') === "true") {
-                enableDebug = true;
-                console.log("Debug is enabled");
-            } else {
-                console.log("Debug is disabled");
-            }
+      .boton {
+        width: 180px;
+        height: 60px;
+        font-size: 26px;
+      }
 
-            if (parseInt(urlParams.get('threads')) === 1 || urlParams.get('threads') === "true") {
-                if (window.SharedArrayBuffer) {
-                    enableThreads = true;
-                    console.log("Threads are enabled");
-                } else {
-                    console.warn("Threads are disabled as SharedArrayBuffer is not available. Threads requires two headers to be set when sending you html page. See https://stackoverflow.com/a/68630724");
-                    console.log("Threads are disabled");
-                }
-            } else {
-                console.log("Threads are disabled");
-            }
+      .boton.secundario {
+        height: 56px;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-            async function run(upload, file) {
-                const url = upload ? input.files[0] : `roms/${file}`;
-                const parts = upload ? input.files[0].name.split(".") : file.split(".");
+  <div class="botones">
+    <button class="boton" onclick="location.href='inicio.html'">INICIO</button>
+    <button class="boton secundario" onclick="location.href='dedicatoria.html'">DEDICATORIA</button>
+  </div>
 
-                const core = await (async (ext) => {
-                    if (["fds", "nes", "unif", "unf"].includes(ext))
-                        return "nes"
-
-                    if (["smc", "fig", "sfc", "gd3", "gd7", "dx2", "bsx", "swc"].includes(ext))
-                        return "snes"
-
-                    if (["z64", "n64"].includes(ext))
-                        return "n64"
-
-                    if (["pce"].includes(ext))
-                        return "pce"
-
-                    if (["ngp", "ngc"].includes(ext))
-                        return "ngp"
-
-                    if (["ws", "wsc"].includes(ext))
-                        return "ws"
-
-                    if (["col", "cv"].includes(ext))
-                        return "coleco"
-
-                    if (["d64"].includes(ext))
-                        return "vice_x64sc"
-
-                    if (["nds", "gba", "gb", "z64", "n64"].includes(ext))
-                        return ext
-
-                    return await new Promise(resolve => {
-                        var coreValues = {
-                            "Nintendo 64": "n64",
-                            "Nintendo Game Boy": "gb",
-                            "Nintendo Game Boy Advance": "gba",
-                            "Nintendo DS": "nds",
-                            "Nintendo Entertainment System": "nes",
-                            "Super Nintendo Entertainment System": "snes",
-                            "PlayStation": "psx",
-                            "Virtual Boy": "vb",
-                            "Sega Mega Drive": "segaMD",
-                            "Sega Master System": "segaMS",
-                            "Sega CD": "segaCD",
-                            "Atari Lynx": "lynx",
-                            "Sega 32X": "sega32x",
-                            "Atari Jaguar": "jaguar",
-                            "Sega Game Gear": "segaGG",
-                            "Sega Saturn": "segaSaturn",
-                            "Atari 7800": "atari7800",
-                            "Atari 2600": "atari2600",
-                            "Arcade": "arcade",
-                            "NEC TurboGrafx-16/SuperGrafx/PC Engine": "pce",
-                            "NEC PC-FX": "pcfx",
-                            "SNK NeoGeo Pocket (Color)": "ngp",
-                            "Bandai WonderSwan (Color)": "ws",
-                            "ColecoVision": "coleco",
-                            "Commodore 64": "vice_x64sc",
-                            "Commodore 128": "vice_x128",
-                            "Commodore VIC20": "vice_xvic",
-                            "Commodore Plus/4": "vice_xplus4",
-                            "Commodore PET": "vice_xpet"
-                        }
-
-                        const cores = Object.keys(coreValues).sort().reduce(
-                            (obj, key) => { 
-                                obj[key] = coreValues[key]; 
-                                return obj;
-                            }, 
-                            {}
-                        );
-
-                        const button = document.createElement("button")
-                        const select = document.createElement("select")
-
-                        for (const type in cores) {
-                            const option = document.createElement("option")
-
-                            option.value = cores[type]
-                            option.textContent = type
-                            select.appendChild(option)
-                        }
-
-                        button.onclick = () => resolve(select[select.selectedIndex].value)
-                        button.textContent = "Load game"
-                        box.innerHTML = ""
-
-                        box.appendChild(select)
-                        box.appendChild(button)
-                    })
-                })(parts.pop())
-
-                const div = document.createElement("div")
-                const sub = document.createElement("div")
-                const script = document.createElement("script")
-
-                sub.id = "game"
-                div.id = "display"
-
-                const top = document.getElementById("top");
-                top.remove();
-                box.remove()
-                div.appendChild(sub)
-                document.body.appendChild(div)
-
-                window.EJS_player = "#game";
-                window.EJS_gameName = parts.shift();
-                window.EJS_biosUrl = "";
-                window.EJS_gameUrl = "roms/cinnamoroll.gba";
-                window.EJS_core = core;
-                window.EJS_pathtodata = "data/";
-                window.EJS_startOnLoaded = true;
-                window.EJS_DEBUG_XX = enableDebug;
-                window.EJS_disableDatabases = true;
-                window.EJS_threads = enableThreads;
-
-                script.src = "data/loader.js";
-                document.body.appendChild(script);
-            }
-
-            run(false, "cinnamoroll.gba");
-            
-            input.onchange = async () => {
-                run(true);
-            }
-            
-            box.ondragover = () => box.setAttribute("drag", true);
-            box.ondragleave = () => box.removeAttribute("drag");
-        </script>
-    </body>
+</body>
 </html>
