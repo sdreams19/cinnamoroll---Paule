@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dedicatoria</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    width:100vw;
+    height:100vh;
+
+    background-image:url("dedicatoria-pc.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    font-family:Georgia, serif;
+
+    position:relative;
+
+}
+
+/* Texto */
+
+.texto-pc{
+
+    position:absolute;
+
+    top:138px;
+    left:200px;
+
+    width:950px;
+
+    color:#ffb6fb;
+
+    font-size:22px;
+
+    line-height:1.75;
+
+    text-align:justify;
+
+}
+
+.texto-movil{
+
+    display:none;
+
+}
+
+@media (max-width:768px){
+
+body{
+
+    background-image:url("dedicatoria-movil.png");
+
+}
+
+.boton-pc{
+
+    display:none;
+
+}
+
+.boton-movil{
+
+    display:block;
+
+    position:absolute;
+
+    bottom:140px;
+    left:60%;
+
+    transform:translateX(-50%);
+
+    border:none;
+    border-radius:35px;
+
+    padding:14px 40px;
+
+    background:#ffdefd;
+    color:white;
+
+    font-size:10px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.boton-movil:hover{
+
+    background:#8abafc;
+
+}
+
+.texto-pc{
+
+    display:none;
+
+}
+
+.texto-movil{
+
+    display:block;
+
+    position:absolute;
+
+    top:138px;
+    left:48px;
+
+    width:280px;
+
+    color:#ffb6fb;
+
+    font-size:13px;
+
+    line-height:1.75;
+
+    text-align:justify;
+
+}
+
+}
+
+/* Botón */
+
+.boton-pc{
+
+    position:absolute;
+
+    bottom:140px;
+    left:60%;
+
+    transform:translateX(-50%);
+
+    border:none;
+    border-radius:35px;
+
+    padding:14px 40px;
+
+    background:#ffdefd;
+    color:white;
+
+    font-size:10px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.boton:hover{
+
+    background:#8abafc;
+
+}
+
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="texto-pc">
+
+Hola amor espero tengas un emocionante rato de juego espero que te guste mi regalo por nuestro aniversario al inicio tenia muchas dudas que si podria con esto, tuve muchos errores, pero el que fuera para ti me dio toda la resiliencia que necesitaba para terminar esto.
+
+De verdad te agradezco permitirme poder lograr cosas nuevas gracias a ti aprendo a ser un mejor hombre siento que nunca haria estas cosas por alguien mas la unica que merece todo este esfuerzo de mi parte eres tu.
+
+Nuevamente espero que te guste jugar aqui recuerda que siempre estare presente para ti en cada uno de esos juegos te amo un monton diviertete jugando amor!.
+
+psdt: siempre puedes pedirme mas juegos ❤
+
+</div>
+
+<div class="texto-movil">
+
+Hola amor espero tengas un emocionante rato de juego espero que te guste mi regalo por nuestro aniversario al inicio tenia muchas dudas que si podria con esto, tuve muchos errores, pero el que fuera para ti me dio toda la resiliencia que necesitaba para terminar esto.
+
+De verdad te agradezco permitirme poder lograr cosas nuevas gracias a ti aprendo a ser un mejor hombre siento que nunca haria estas cosas por alguien mas la unica que merece todo este esfuerzo de mi parte eres tu.
+
+Nuevamente espero que te guste jugar aqui recuerda que siempre estare presente para ti en cada uno de esos juegos te amo un monton diviertete jugando amor!.
+
+psdt: siempre puedes pedirme mas juegos ❤
+
+</div>
+
+<button class="boton-pc" onclick="location.href='index.html'">
+Volver al inicio
+</button>
+
+<button class="boton-movil" onclick="location.href='index.html'">
+Volver al inicio
+</button>
+
+</body>
+</html>

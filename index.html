@@ -27,25 +27,51 @@
       background-repeat: no-repeat;
     }
 
-    .botones {
-      position: absolute;
-      left: 30%;
-      top: 65%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      z-index: 10;
+    .boton{
+    position:absolute;
+
+    width:200px;
+    height:60px;
+
+    border:none;
+    border-radius:999px;
+    background:rgba(255,255,255,.95);
+    color:#a9c7ff;
+
+    font-size:20px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+/* SOLO POSICIÓN */
+
+.inicio{
+    top:85%;
+    left:30%;
+}
+
+.dedicatoria{
+    top:85%;
+    left:44%;
+}
+
+.recuerdos{
+    top:85%;
+    left:58%;
+
     }
 
     .boton {
-      width: 290px;
-      height: 86px;
+      width: 180px;
+      height: 40px;
       border: none;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.95);
       color: #a9c7ff;
-      font-size: 38px;
+      font-size: 20px;
       font-weight: 900;
       letter-spacing: 1px;
       cursor: pointer;
@@ -59,8 +85,8 @@
     }
 
     .boton.secundario {
-      height: 74px;
-      font-size: 24px;
+      height: 50px;
+      font-size: 20px;
     }
 
     @media (max-width: 900px) {
@@ -89,33 +115,70 @@ body{
     background-size:cover;
     background-position:center;
 }
-      .botones {
-        left: 50%;
-        top: auto;
-        bottom: 24%;
-        transform: translateX(-50%);
-        gap: 14px;
+      .boton{
+    position:absolute;
+
+    width:200px;
+    height:50px;
+
+    border:none;
+    border-radius:999px;
+    background:rgba(255,255,255,.95);
+    color:#a9c7ff;
+
+    font-size:20px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+/* SOLO POSICIÓN */
+
+.inicio{
+    top:62%;
+    left:30%;
+}
+
+.dedicatoria{
+    top:70%;
+    left:30%;
+}
+
+.recuerdos{
+    top:78%;
+    left:30%;
+
       }
 
       .boton {
-        width: 180px;
-        height: 60px;
-        font-size: 26px;
+        width: 150px;
+        height: 40px;
+        font-size: 15px;
       }
 
       .boton.secundario {
-        height: 56px;
-        font-size: 18px;
+        height: 40px;
+        font-size: 15px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="botones">
-    <button class="boton" onclick="location.href='inicio.html'">INICIO</button>
-    <button class="boton secundario" onclick="location.href='dedicatoria.html'">DEDICATORIA</button>
-  </div>
+  <button class="boton inicio" onclick="location.href='inicio.html'">
+    INICIO
+</button>
+
+<button class="boton dedicatoria" onclick="location.href='dedicatoria.html'">
+    DEDICATORIA
+</button>
+
+<button class="boton recuerdos"
+onclick="location.href='recuerdos.html'">
+RECUERDOS
+</button>
 
 </body>
 </html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuerdos</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ===========================
+        FONDO GENERAL PC
+=========================== */
+
+body{
+    width:100vw;
+    height:100vh;
+    background-image:url("recuerdos-pc.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    overflow:hidden;
+    position:relative;
+    font-family:Arial,sans-serif;
+}
+
+
+/* ===========================
+        BOTÓN PC
+=========================== */
+
+.boton-pc{
+
+    position:absolute;
+    top:25px;
+    left:25px;
+
+    padding:12px 28px;
+
+    border:none;
+    border-radius:30px;
+
+    background:white;
+    color:#7faaf7;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+
+}
+
+.boton-pc:hover{
+
+    background:#95befd;
+    color:white;
+
+}
+
+
+/* ===========================
+        BOTÓN MÓVIL
+=========================== */
+
+.boton-movil{
+
+    display:none;
+
+}
+
+
+/* =====================================================
+                RESPONSIVE
+===================================================== */
+
+@media (max-width:768px){
+
+body{
+
+background-image:url("recuerdos-movil.png");
+
+}
+
+
+/* Ocultar botón PC */
+
+.boton-pc{
+
+display:none;
+
+}
+
+
+/* Mostrar botón móvil */
+
+.boton-movil{
+
+display:block;
+
+position:absolute;
+
+top:18px;
+left:18px;
+
+padding:10px 22px;
+
+border:none;
+border-radius:25px;
+
+background:white;
+
+color:#7faaf7;
+
+font-size:15px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+transition:.3s;
+
+}
+
+.boton-movil:hover{
+
+background:#95befd;
+
+color:white;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<button class="boton-pc"
+onclick="location.href='index.html'">
+
+← Inicio
+
+</button>
+
+
+<button class="boton-movil"
+onclick="location.href='index.html'">
+
+←
+
+</button>
+
+</body>
+</html>
